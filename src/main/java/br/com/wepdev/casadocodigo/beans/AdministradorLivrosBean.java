@@ -6,6 +6,8 @@ import br.com.wepdev.casadocodigo.models.Autor;
 import br.com.wepdev.casadocodigo.models.Livro;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -35,7 +37,11 @@ public class AdministradorLivrosBean {
             livro.getAutores().add(new Autor(outorId));
         }
         livroDAO.salvar(livro);
-        System.out.println("Livro cadastrado : " + livro);
+        
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true); // Deixa a mensagem atica durante o contexto de flash, coloca os dados no sessão do usuario que dura ate a ultima requisição
+        FacesContext.getCurrentInstance().addMessage(null , new FacesMessage("Livro cadastrado com sucesso"));
+
+        //System.out.println("Livro cadastrado : " + livro);
 
         //this.livro = new Livro(); // Instancia um objeto vazio, assim se limpa a tela e PERMANECE NA MESMA TELA
         //this.autoresId = new ArrayList<>(); // Instancia um objeto vazio, e desseleciona o autor selecionado anteriormente e PERMANECE NA MESMA TELA
