@@ -29,6 +29,9 @@ public class AdministradorLivrosBean {
 
     private List<Integer> autoresId = new ArrayList<>();
 
+    @Inject
+    private FacesContext context;
+
 
 
     @Transactional
@@ -37,9 +40,9 @@ public class AdministradorLivrosBean {
             livro.getAutores().add(new Autor(outorId));
         }
         livroDAO.salvar(livro);
-        
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true); // Deixa a mensagem atica durante o contexto de flash, coloca os dados no sessão do usuario que dura ate a ultima requisição
-        FacesContext.getCurrentInstance().addMessage(null , new FacesMessage("Livro cadastrado com sucesso"));
+
+        context.getExternalContext().getFlash().setKeepMessages(true); // Deixa a mensagem atica durante o contexto de flash, coloca os dados no sessão do usuario que dura ate a ultima requisição
+        context.addMessage(null , new FacesMessage("Livro cadastrado com sucesso"));
 
         //System.out.println("Livro cadastrado : " + livro);
 
