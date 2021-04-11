@@ -7,35 +7,38 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
       <h:form>
-          <h:messages />
+
           <div>
               <h:outputLabel value="Título" />
-              <h:inputText value="#{administradorLivrosBean.livro.titulo}" required="true" requiredMessage="O Título é um campo obrigatório"/>
+              <h:inputText id="titulo" value="#{administradorLivrosBean.livro.titulo}" required="true" />
+              <h:message for="titulo"/>
           </div>
           <div>
               <h:outputLabel value="Descrição" />
-              <h:inputTextarea rows="4" cols="20" value="#{administradorLivrosBean.livro.descricao}" required="true" requiredMessage="A Descrição é um campo obrigatório"/>
+              <h:inputTextarea id="descricao" rows="4" cols="20" value="#{administradorLivrosBean.livro.descricao}" required="true" />
+              <h:message for="descricao"/>
           </div>
           <div>
               <h:outputLabel value="Número de Páginas" />
-              <h:inputText value="#{administradorLivrosBean.livro.numeroPaginas}" required="true" requiredMessage="Informe o número de páginas">
-                  <f:validateLongRange minimum="1"/>
+              <h:inputText id="numeroPaginas" value="#{administradorLivrosBean.livro.numeroPaginas}" required="true" >
               </h:inputText>
+              <h:message for="numeroPaginas"/>
           </div>
           <div>
               <h:outputLabel value="Preço" />
-              <h:inputText value="#{administradorLivrosBean.livro.preco}" required="true" requiredMessage="Preencha o valor do livro">
-                  <f:validateDoubleRange minimum="20" maximum="150"/>
+              <h:inputText id="preco" value="#{administradorLivrosBean.livro.preco}" required="true" >
               </h:inputText>
+              <h:message for="preco"/>
           </div>
           <div>
               <h:outputLabel value="Autores" />
-              <h:selectManyListbox value="#{administradorLivrosBean.autoresId}"
+              <h:selectManyListbox id="autores" value="#{administradorLivrosBean.autoresId}"
                   converter="javax.faces.Integer"> <!-- CONVERTE UM VALOR DE STRING PARA INTEGER -->
                   <f:selectItems value="#{administradorLivrosBean.autores}"
                                  var="autor"
                                  itemValue="#{autor.id}" itemLabel="#{autor.nome}" />
               </h:selectManyListbox>
+              <h:message for="autores"/>
           </div>
           <h:commandButton value="Cadastrar" action="#{administradorLivrosBean.salvar}"/>
       </h:form>

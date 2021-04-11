@@ -1,6 +1,7 @@
 package br.com.wepdev.casadocodigo.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +14,25 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /*
+    (Bean Validator) Hibernate validation
+     */
+    @NotBlank
     private String titulo;
 
     @Lob // Aceita um valor grande de texto
+    @Size(min = 10)
+    @NotBlank
     private String descricao;
 
+    @DecimalMin("20") // Valor minimo de 20,00
     private BigDecimal preco;
 
+    @Min(50) // No minimo 50 paginas
     private  Integer numeroPaginas;
 
     @ManyToMany // Muitos para muitos
+    @Size(min = 1) // No minimo 1 autor
     private List<Autor> autores = new ArrayList<>();
 
 

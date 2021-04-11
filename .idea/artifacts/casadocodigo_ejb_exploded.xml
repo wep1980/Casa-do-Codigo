@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="casadocodigo:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/casadocodigo_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="casadocodigo/ejb/EJB" />
+      <element id="javaee-facet-classes" facet="casadocodigo/ejb/EJB" />
+    </root>
+  </artifact>
+</component>
