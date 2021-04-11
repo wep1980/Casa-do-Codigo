@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,9 @@ public class Livro {
 
     @Min(50) // No minimo 50 paginas
     private  Integer numeroPaginas;
+
+    @Temporal(TemporalType.DATE) // Gravando apenas a data
+    private Calendar dataPublicacao;
 
     @ManyToMany // Muitos para muitos
     @Size(min = 1) // No minimo 1 autor
@@ -83,6 +87,14 @@ public class Livro {
 
     public void setNumeroPaginas(Integer numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
+    }
+
+    public Calendar getDataPublicacao() {
+        return dataPublicacao;
+    }
+
+    public void setDataPublicacao(Calendar dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
     }
 
     @Override
