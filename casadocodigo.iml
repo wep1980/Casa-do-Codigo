@@ -18,24 +18,10 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <datasource-mapping>
-          <factory-entry name="Loucademia" />
-        </datasource-mapping>
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping />
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
-      </configuration>
-    </facet>
-    <facet type="hibernate" name="Hibernate">
-      <configuration>
-        <datasource-map />
-        <naming-strategy-map />
-      </configuration>
-    </facet>
-    <facet type="ejb" name="EJB">
-      <configuration>
-        <ejbRoots>
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </ejbRoots>
       </configuration>
     </facet>
   </component>
@@ -54,6 +40,7 @@
     <orderEntry type="library" name="PrimeFaces-6.1" level="project" />
     <orderEntry type="library" name="Validation API-2.0.1.Final" level="project" />
     <orderEntry type="library" name="Validation API-2.0.1.Final" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.enterprise:cdi-api:2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.el:javax.el-api:3.0.0" level="project" />
@@ -88,5 +75,6 @@
     <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:3.0.7" level="project" />
     <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:1.8" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.15" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
   </component>
 </module>

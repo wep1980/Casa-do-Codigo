@@ -10,8 +10,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 @Named
@@ -27,29 +28,26 @@ public class AdministradorLivrosBean {
 
     private Livro livro = new Livro();
 
-    private List<Integer> autoresId = new ArrayList<>();
-
     @Inject
     private FacesContext context;
 
 
+    private Part capaLivro; // Objeto para trabalhar com arquivos
+
+
+
+
+
 
     @Transactional
-    public String salvar(){
-        for (Integer outorId: autoresId) {
-            livro.getAutores().add(new Autor(outorId));
-        }
+    public String salvar() throws IOException {
+
         livroDAO.salvar(livro);
+
+        capaLivro.write("C:/Users/WePDev/Desktop/casadocodigo/livros/" + capaLivro.getSubmittedFileName());
 
         context.getExternalContext().getFlash().setKeepMessages(true); // Deixa a mensagem atica durante o contexto de flash, coloca os dados no sessão do usuario que dura ate a ultima requisição
         context.addMessage(null , new FacesMessage("Livro cadastrado com sucesso"));
-
-        //System.out.println("Livro cadastrado : " + livro);
-
-        //this.livro = new Livro(); // Instancia um objeto vazio, assim se limpa a tela e PERMANECE NA MESMA TELA
-        //this.autoresId = new ArrayList<>(); // Instancia um objeto vazio, e desseleciona o autor selecionado anteriormente e PERMANECE NA MESMA TELA
-
-        //return "/livros/lista"; // Ao atualizar essa tela , ele resubmete essa tela, e as informações são gravadas novamente no banco de dados ( NÃO FAZER )
 
         return "/livros/lista?faces-redirect=true"; // Manda a tela redirecionar ( UTILIZAR SEMPRE QUE FOR REALIZADO UM POST )
     }
@@ -67,11 +65,15 @@ public class AdministradorLivrosBean {
         this.livro = livro;
     }
 
-    public List<Integer> getAutoresId() {
-        return autoresId;
+    public void setAutorDAO(AutorDAO autorDAO) {
+        this.autorDAO = autorDAO;
     }
 
-    public void setAutoresId(List<Integer> autoresId) {
-        this.autoresId = autoresId;
+    public Part getCapaLivro() {
+        return capaLivro;
+    }
+
+    public void setCapaLivro(Part capaLivro) {
+        this.capaLivro = capaLivro;
     }
 }

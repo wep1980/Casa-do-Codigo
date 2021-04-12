@@ -37,7 +37,8 @@ public class Livro {
 
     @ManyToMany // Muitos para muitos
     @Size(min = 1) // No minimo 1 autor
-    private List<Autor> autores = new ArrayList<>();
+    @NotNull
+    private List<Autor> autores = new ArrayList<Autor>();
 
 
 
