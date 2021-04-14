@@ -2,6 +2,7 @@ package br.com.wepdev.casadocodigo.beans;
 
 import br.com.wepdev.casadocodigo.DAO.AutorDAO;
 import br.com.wepdev.casadocodigo.DAO.LivroDAO;
+import br.com.wepdev.casadocodigo.loja.infra.FileSaver;
 import br.com.wepdev.casadocodigo.models.Autor;
 import br.com.wepdev.casadocodigo.models.Livro;
 
@@ -19,7 +20,6 @@ import java.util.List;
 @RequestScoped
 public class AdministradorLivrosBean {
 
-
     @Inject
     private LivroDAO livroDAO;
 
@@ -31,12 +31,7 @@ public class AdministradorLivrosBean {
     @Inject
     private FacesContext context;
 
-
     private Part capaLivro; // Objeto para trabalhar com arquivos
-
-
-
-
 
 
     @Transactional
@@ -44,13 +39,21 @@ public class AdministradorLivrosBean {
 
         livroDAO.salvar(livro);
 
-        capaLivro.write("C:/Users/WePDev/Desktop/casadocodigo/livros/" + capaLivro.getSubmittedFileName());
+        // ------------------------ INICIO arquivos --------------------------------//
+
+        FileSaver fileSaver = new FileSaver();
+
+        // Nesse metodo e informado o arquivo que nesse caso e do tipo capaLivro e o local de armazenamento
+        livro.setCapaPath(fileSaver.write(capaLivro , "livros"));
+
+        // ------------------------ FIM arquivos --------------------------------//
 
         context.getExternalContext().getFlash().setKeepMessages(true); // Deixa a mensagem atica durante o contexto de flash, coloca os dados no sessão do usuario que dura ate a ultima requisição
         context.addMessage(null , new FacesMessage("Livro cadastrado com sucesso"));
 
         return "/livros/lista?faces-redirect=true"; // Manda a tela redirecionar ( UTILIZAR SEMPRE QUE FOR REALIZADO UM POST )
     }
+
 
 
     public List<Autor> getAutores() {

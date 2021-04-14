@@ -35,6 +35,8 @@ public class Livro {
     @Temporal(TemporalType.DATE) // Gravando apenas a data
     private Calendar dataPublicacao;
 
+    private String capaPath; // O arquivo e salvo no disco e o caminho no banco de dados
+
     @ManyToMany // Muitos para muitos
     @Size(min = 1) // No minimo 1 autor
     @NotNull
@@ -96,6 +98,14 @@ public class Livro {
 
     public void setDataPublicacao(Calendar dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
+    }
+
+    public String getCapaPath() {
+        return capaPath;
+    }
+
+    public void setCapaPath(String capaPath) {
+        this.capaPath = capaPath;
     }
 
     @Override
