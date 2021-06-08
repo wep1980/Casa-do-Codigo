@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Named
-@RequestScoped
+@RequestScoped // mantem o arquivo vivo durante o processo de uso do usuario
 public class AdministradorLivrosBean {
 
     @Inject
@@ -26,15 +26,15 @@ public class AdministradorLivrosBean {
     @Inject
     private AutorDAO autorDAO;
 
-    private Livro livro = new Livro();
-
     @Inject
     private FacesContext context;
+
+    private Livro livro = new Livro(); // Evita o erro de livro nulo
 
     private Part capaLivro; // Objeto para trabalhar com arquivos
 
 
-    @Transactional
+    @Transactional // Faz parte do JTA
     public String salvar() throws IOException {
 
         livroDAO.salvar(livro);
@@ -48,10 +48,11 @@ public class AdministradorLivrosBean {
 
         // ------------------------ FIM arquivos --------------------------------//
 
-        context.getExternalContext().getFlash().setKeepMessages(true); // Deixa a mensagem atica durante o contexto de flash, coloca os dados no sessão do usuario que dura ate a ultima requisição
+        context.getExternalContext().getFlash().setKeepMessages(true); // Deixa a mensagem ativa durante o contexto de flash, coloca os dados no sessão do usuario que dura ate a ultima requisição
         context.addMessage(null , new FacesMessage("Livro cadastrado com sucesso"));
 
-        return "/livros/lista?faces-redirect=true"; // Manda a tela redirecionar ( UTILIZAR SEMPRE QUE FOR REALIZADO UM POST )
+        // Manda a tela redirecionar ( UTILIZAR SEMPRE QUE FOR REALIZADO UM POST ) senão ao atualizar a tela e feito um novo cadastro com os mesmos dados. E feito um novo request
+        return "/livros/lista?faces-redirect=true";
     }
 
 

@@ -19,20 +19,22 @@
           </div>
           <div>
               <h:outputLabel value="Número de Páginas" />
-              <h:inputText id="numeroPaginas" value="#{administradorLivrosBean.livro.numeroPaginas}" required="true" >
+              <h:inputText id="numeroPaginas" value="#{administradorLivrosBean.livro.numeroPaginas}" required="true" > <!-- requiredMessage="O número de páginas e Obrigatorio" -->
+              <!-- <f:validateLongRange minimum="80"/> -->
               </h:inputText>
               <h:message for="numeroPaginas"/>
           </div>
           <div>
               <h:outputLabel value="Preço" />
               <h:inputText id="preco" value="#{administradorLivrosBean.livro.preco}" required="true" >
+                 <!-- <f:validateDoubleRange minimum="20" maximum="150"/> -->
               </h:inputText>
               <h:message for="preco"/>
           </div>
           <div>
               <h:outputLabel value="Autores" />
               <h:selectManyListbox value="#{administradorLivrosBean.livro.autores}"
-                                   converter="autorConverter"  id="autores"> <!-- Lista de autores abaixo -->
+                                   converter="autorConverter"  id="autores"> <!-- Lista de autores abaixo onde pode ser selecionado varios -->
                   <f:selectItems value="#{administradorLivrosBean.autores}"
                                  var="autor"
                                  itemValue="#{autor}" itemLabel="#{autor.nome}" />
@@ -41,7 +43,7 @@
           </div>
           <div>
               <h:outputLabel value="Data de publicação" />
-              <!-- <h:inputText value="#{administradorLivrosBean.livro.dataPublicacao.time}" id="dataPublicacao"/>  -->
+              <!-- <h:inputText value="#{administradorLivrosBean.livro.dataPublicacao.time}" id="dataPublicacao"/> como a data e do tipo Date e necessario colocar o .time -->
               <!--  <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>  Conversão de data -->
               <h:inputText value="#{administradorLivrosBean.livro.dataPublicacao}" id="dataPublicacao"/>
               <h:message for="dataPublicacao"/>

@@ -33,6 +33,7 @@ public class Livro {
     private  Integer numeroPaginas;
 
     @Temporal(TemporalType.DATE) // Gravando apenas a data
+    //private Calendar dataPublicacao = Calendar.getInstance(); -> Evita erro de nullPointerException
     private Calendar dataPublicacao;
 
     private String capaPath; // O arquivo e salvo no disco e o caminho no banco de dados
@@ -40,7 +41,7 @@ public class Livro {
     @ManyToMany // Muitos para muitos
     @Size(min = 1) // No minimo 1 autor
     @NotNull
-    private List<Autor> autores = new ArrayList<Autor>();
+    private List<Autor> autores = new ArrayList<Autor>(); // Evita que o autor fique nulo e evita erros
 
 
 

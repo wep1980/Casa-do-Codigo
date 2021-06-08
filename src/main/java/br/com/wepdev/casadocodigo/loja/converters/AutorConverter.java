@@ -34,7 +34,6 @@ public class AutorConverter implements Converter {
         if(autorObject == null )  return null;
             System.out.println("Convertendo para String: " + autorObject);
 
-
         Autor autor = (Autor) autorObject;
         return autor.getId().toString();
     }

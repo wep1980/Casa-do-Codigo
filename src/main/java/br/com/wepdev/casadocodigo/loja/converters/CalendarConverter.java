@@ -16,6 +16,7 @@ Classe de conversão do JSF de texto que vem da tela
 public class CalendarConverter implements Converter {
 
 
+    //Conversor
     private DateTimeConverter converter = new DateTimeConverter();
 
     // Construtor que ja formata a data
@@ -26,6 +27,7 @@ public class CalendarConverter implements Converter {
 
     /**
      * Conversão de data da tela para manegedBean
+     * Conversao de texto para objeto
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String dataTexto) {
@@ -38,6 +40,7 @@ public class CalendarConverter implements Converter {
 
     /**
      * Conversão de data manegedBean para tela
+     * Conversao de Objeto para texto
      */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object dataObject) {

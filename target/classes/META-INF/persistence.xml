@@ -4,7 +4,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
     <persistence-unit name="CasaDoCodigo">
-        <jta-data-source>jdbc/CasadocodigoDS</jta-data-source>
+        <jta-data-source>jdbc/CasadocodigoDS</jta-data-source> <!-- API DE TRANSAÇÃO COM BANCO DE DADOS -->
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.show_sql" value="true" />

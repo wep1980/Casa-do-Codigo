@@ -16,8 +16,9 @@ import java.nio.file.Paths;
 
 /**
  * Classe que trabalha os arquivos para exibição
+ * arquivos salvos no servidor
  */
-@WebServlet("/file/*") // Possibilita o uso do getRequestURI()
+@WebServlet("/file/*") // Possibilita o uso do getRequestURI() que busca o caminho completo do arquivo
 public class FileServlet extends HttpServlet {
 
     @Override
@@ -28,9 +29,9 @@ public class FileServlet extends HttpServlet {
 
         // Eviando de volta para a tela, o fato de ser um arquivo ele segue algumas regras
 
-        Path source = Paths.get(FileSaver.SERVER_PATH + "/" + path); // Pegando o arquivo que foi salvo
+        Path source = Paths.get(FileSaver.SERVER_PATH + "/" + path); // Pegando o arquivo que foi salvo no servidor ou sistema operacional ( ARQUIVO FONTE )
         FileNameMap fileNameMap = URLConnection.getFileNameMap();  // Conectando ao arquivo
-        String contentType = fileNameMap.getContentTypeFor("file:" + source); // "file:" -> Protocolo
+        String contentType = fileNameMap.getContentTypeFor("file:" + source); // "file:" -> Protocolo -- CRIADO O CONTENT TYPE
 
         resp.reset(); // LIMPA O RESPONSE. Antes de operar qualquer coisa no Response utilizando e importante realizar o reset()
         resp.setContentType(contentType); // Para que o navegador funcione corretamente de acordo com o tipo de contentType
