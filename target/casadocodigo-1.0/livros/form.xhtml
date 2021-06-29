@@ -1,59 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
 
+<h:head>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="style-admin.css"/>
+</h:head>
+
+<h:body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Casa do Código</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><h:link value="Lista" outcome="lista" /></li>
+                    <li class="active"><a href="#">Cadastro</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Cadastro de Livros</h1>
       <h:form enctype="multipart/form-data"> <!-- enctype="multpart/form-data" -> para trabalhar com envios de arquivos -->
-
-          <div>
+          <div class="form-group">
               <h:outputLabel value="Título" />
-              <h:inputText id="titulo" value="#{administradorLivrosBean.livro.titulo}" required="true" />
+              <h:inputText id="titulo" value="#{administradorLivrosBean.livro.titulo}" required="true"
+                 styleClass="form-control"/>
               <h:message for="titulo"/>
           </div>
-          <div>
+          <div class="form-group">
               <h:outputLabel value="Descrição" />
-              <h:inputTextarea id="descricao" rows="4" cols="20" value="#{administradorLivrosBean.livro.descricao}" required="true" />
+              <h:inputTextarea id="descricao" rows="4" cols="20" value="#{administradorLivrosBean.livro.descricao}" required="true"
+                               styleClass="form-control"/>
               <h:message for="descricao"/>
           </div>
-          <div>
+          <div class="form-group">
               <h:outputLabel value="Número de Páginas" />
-              <h:inputText id="numeroPaginas" value="#{administradorLivrosBean.livro.numeroPaginas}" required="true" > <!-- requiredMessage="O número de páginas e Obrigatorio" -->
+              <h:inputText id="numeroPaginas" value="#{administradorLivrosBean.livro.numeroPaginas}" required="true" styleClass="form-control"> <!-- requiredMessage="O número de páginas e Obrigatorio" -->
               <!-- <f:validateLongRange minimum="80"/> -->
               </h:inputText>
               <h:message for="numeroPaginas"/>
           </div>
-          <div>
+          <div class="form-group">
               <h:outputLabel value="Preço" />
-              <h:inputText id="preco" value="#{administradorLivrosBean.livro.preco}" required="true" >
+              <h:inputText id="preco" value="#{administradorLivrosBean.livro.preco}" required="true" styleClass="form-control">
                  <!-- <f:validateDoubleRange minimum="20" maximum="150"/> -->
               </h:inputText>
               <h:message for="preco"/>
           </div>
-          <div>
+          <div class="form-group">
               <h:outputLabel value="Autores" />
               <h:selectManyListbox value="#{administradorLivrosBean.livro.autores}"
-                                   converter="autorConverter"  id="autores"> <!-- Lista de autores abaixo onde pode ser selecionado varios -->
+                                   converter="autorConverter"  id="autores" styleClass="form-control"> <!-- Lista de autores abaixo onde pode ser selecionado varios -->
                   <f:selectItems value="#{administradorLivrosBean.autores}"
                                  var="autor"
                                  itemValue="#{autor}" itemLabel="#{autor.nome}" />
               </h:selectManyListbox>
               <h:message for="autores"/>
           </div>
-          <div>
+          <div class="form-group">
               <h:outputLabel value="Data de publicação" />
               <!-- <h:inputText value="#{administradorLivrosBean.livro.dataPublicacao.time}" id="dataPublicacao"/> como a data e do tipo Date e necessario colocar o .time -->
               <!--  <f:convertDateTime pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>  Conversão de data -->
-              <h:inputText value="#{administradorLivrosBean.livro.dataPublicacao}" id="dataPublicacao"/>
+              <h:inputText value="#{administradorLivrosBean.livro.dataPublicacao}" id="dataPublicacao" styleClass="form-control"/>
               <h:message for="dataPublicacao"/>
           </div>
-          <div>
+          <div class="form-group">
               <h:outputLabel value="Capa do livro"/>
-              <h:inputFile value="#{administradorLivrosBean.capaLivro}" id="capaLivro" />
+              <h:inputFile value="#{administradorLivrosBean.capaLivro}" id="capaLivro" styleClass="form-control"/>
               <h:message for="capaLivro" />
           </div>
-          <h:commandButton value="Cadastrar" action="#{administradorLivrosBean.salvar}"/>
+          <h:commandButton value="Cadastrar" action="#{administradorLivrosBean.salvar}" styleClass="btn btn-primary"/>
       </h:form>
-
+    </div>
+</h:body>
 </html>

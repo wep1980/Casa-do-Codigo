@@ -6,10 +6,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<h:head>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+</h:head>
+<h:body>
+    <div class="container">
       <!-- Exibe todas as mensagens que tiverem cadastradas no FacesMessage-->
       <h:messages />
 
-      <h:dataTable var="livro" value="#{administradorListaLivrosBean.livros}">
+      <h:dataTable var="livro" value="#{administradorListaLivrosBean.livros}"
+          class="table table-bordered table-striped"> <!-- CLASSE BOOTSTRAP PARA TABELA - https://getbootstrap.com/docs/5.0/customize/components/  https://getbootstrap.com/docs/3.4/css/-->
           <h:column>
               <f:facet name="header">Título</f:facet>
               #{livro.titulo}
@@ -38,5 +44,6 @@
                     height="100" alt="#{livro.titulo}" />
           </h:column>
       </h:dataTable>
-
+    </div>
+</h:body>
 </html>

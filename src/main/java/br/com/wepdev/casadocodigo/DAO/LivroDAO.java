@@ -56,7 +56,7 @@ public class LivroDAO {
     public Livro buscarPorId(Integer id) {
         // SOLUÇÃO 1 -> Acontecia um erro apos buscar os ids, pq a conexão se encerrava e n buscava os autores
         return entityManager.find(Livro.class, id);
-        
+
         // SOLUÇÃO 2 -> para querys menos complexas, solucão mais performatica
         //String jpql = "select l from Livro l join fetch l.autores where l.id = :id";
         //return entityManager.createQuery(jpql , Livro.class)
