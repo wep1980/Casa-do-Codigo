@@ -7,6 +7,7 @@ import br.com.wepdev.casadocodigo.models.Livro;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import java.util.List;
 
 @Model
 public class CarrinhoComprasBean {
@@ -29,6 +30,10 @@ public class CarrinhoComprasBean {
         carrinho.add(item); // adicionando o item ao carrinho
 
         return "carrinho?faces-redirect=true"; // retorna o usuario para a mesma tela, a URL muda
-        
+
+    }
+
+    public List<CarrinhoItem> getItens(){
+       return carrinho.getItens();
     }
 }
