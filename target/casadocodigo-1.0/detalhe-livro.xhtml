@@ -7,7 +7,7 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <!-- xmlns:jsf="http://xmlns.jcp.org/jsf"  Habilitando os atributos -->
-	<!-- xmlns:jsf="http://xmlns.jcp.org/jsf"  Habilitando os componentes, serve para utilizar componentes do html junto com o jsf -->
+	<!-- xmlns:pt="http://xmlns.jcp.org/jsf"  Habilitando os componentes, serve para utilizar componentes do html junto com o jsf -->
 
 <f:metadata>
     <f:viewParam id="id" name="id" value="#{livroDetalheBean.id}"/> <!-- Pegando a informacao via GET -->
@@ -338,8 +338,8 @@
 					</span>
 				</p>
 			</label>
-				<button class="adicionarAoCarrinho-botaoComprar" jsf:action="#{carrinhoComprasBean.adicionar}"
-						type="submit" name="id" value="2055441665" title="Compre o E-book">
+				<button class="adicionarAoCarrinho-botaoComprar" jsf:action="#{carrinhoComprasBean.add(livroDetalheBean.id)}"
+						type="submit"  title="Compre o E-book">
 					Comprar
 				</button>
 		</li>

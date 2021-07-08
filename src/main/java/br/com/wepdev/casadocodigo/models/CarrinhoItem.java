@@ -11,6 +11,7 @@ public class CarrinhoItem {
     // Cobstrutor que recebe um livro , utilizado no CarrinhoComprasBean
     public CarrinhoItem(Livro livro) {
         this.livro = livro;
+        this.quantidade = 1; // aSSIM QUE ADICIONAR UM LIVRO JA SET 1 NA QUANTIDADE, SOLUCAO TEMPORARIA
     }
 
 
