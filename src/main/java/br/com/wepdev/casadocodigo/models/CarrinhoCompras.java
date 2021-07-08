@@ -60,4 +60,18 @@ public class CarrinhoCompras implements Serializable {
     public BigDecimal getTotal(CarrinhoItem item){
        return item.getLivro().getPreco().multiply(new BigDecimal(item.getQuantidade()));
     }
+
+    public void remover(CarrinhoItem item) {
+        this.itens.remove(item);
+    }
+
+    /**
+     * Metodo que soma a quantidade total de todos os itens q estiverem mo carrinho de compras,
+     * que e vizualizado na pagina do carrinho, dentro cesta do carrinho de compras
+     * @return
+     */
+    public Integer getQuantidadeTotal(){
+        // Mapeia para int, onde cada item dentro do Set faz um getQuantidade() e soma o resultado do getQuantidade()
+        return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
+    }
 }
