@@ -314,7 +314,9 @@
 		<tfoot class="formularioDoCarrinho-rodape">
 			<tr>
 				<td class="formularioDoCarrinho-rodape-item formularioDoCarrinho-finalizar" colspan="3">
-					<button class="formularioDoCarrinho-finalizar-botao" type="submit" name="checkout">Finalizar<span class="formularioDoCarrinho-finalizar-botao-texto" role="presentation"> compra</span></button>
+					<button class="formularioDoCarrinho-finalizar-botao" jsf:action="checkout" type="submit" >Finalizar
+						<span class="formularioDoCarrinho-finalizar-botao-texto" role="presentation"> compra</span>
+					</button>
 				</td>
 				<!-- Ao atualizar o Bean pega todos os valores da tela e devolve os mesmos, por isso o button do tipo submit -->
 				<td class="formularioDoCarrinho-rodape-item">

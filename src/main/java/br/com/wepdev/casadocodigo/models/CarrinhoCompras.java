@@ -1,6 +1,10 @@
 package br.com.wepdev.casadocodigo.models;
 
+import br.com.wepdev.casadocodigo.DAO.CompraDao;
+import br.com.wepdev.casadocodigo.DAO.UsuarioDao;
+
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -18,7 +22,11 @@ public class CarrinhoCompras implements Serializable {
     // QUANDO SE UTILIZA UM ELEMENTO QUE E BASEADO EM SET E HASHSET E RECOMENDADO TER OS METODOS EQUALS E HASHCODE
     private Set<CarrinhoItem> itens = new HashSet<>();
 
+    //@Inject
+    //private UsuarioDao usuarioDao;
 
+    @Inject
+    private CompraDao compraDao;
 
     /**
      * Adiciona os itens no carrinho de compras
@@ -73,5 +81,23 @@ public class CarrinhoCompras implements Serializable {
     public Integer getQuantidadeTotal(){
         // Mapeia para int, onde cada item dentro do Set faz um getQuantidade() e soma o resultado do getQuantidade()
         return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
+    }
+
+
+    public void finalizar(Usuario usuario) {
+
+        Compra compra = new Compra();
+        compra.setUsuario(usuario);
+        compra.setItens(this.toJson()); // vai permitir transforma o carrinhoItem para Json
+        //usuarioDao.salvar(usuario); // Como ja esta sendo salvo em cascata, nao e necessario salvar o usuario aqui.
+        compraDao.salvar(compra);
+    }
+
+    /**
+     * Metodo que transforma os itens em JSON
+     * @return
+     */
+    private String toJson() {
+        return "{}";
     }
 }
